@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -19,29 +20,49 @@ body {
 .invitation {
   width: min(100%, 650px);
   text-align: center;
+
+  /* انیمیشن ورود کارت */
+  animation: cardEntrance 1.4s ease-out both;
 }
 
 .invitation-image {
   display: block;
   width: 100%;
   height: auto;
+
   border-radius: 18px;
+
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+
+  /* انیمیشن عکس */
+  animation: imageEntrance 1.6s ease-out both;
 }
 
 .location-btn {
   display: block;
+
   margin: 22px auto 10px;
+
   width: min(92%, 500px);
+
   padding: 16px 20px;
+
   border-radius: 50px;
+
   background: #a87520;
   color: white;
+
   text-decoration: none;
+
   font-size: 18px;
   font-weight: bold;
+
   box-shadow: 0 8px 18px rgba(168, 117, 32, 0.28);
+
   transition: 0.2s ease;
+
+  /* انیمیشن دکمه */
+  animation: buttonEntrance 1s ease-out 0.9s both;
 }
 
 .location-btn:hover {
@@ -58,9 +79,70 @@ body {
   font-size: 14px;
   line-height: 1.8;
   margin: 8px 15px;
+
+  animation: fadeIn 1s ease-out 1.2s both;
+}
+
+/* انیمیشن ورود کل کارت */
+@keyframes cardEntrance {
+
+  from {
+    opacity: 0;
+    transform: translateY(45px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+/* انیمیشن عکس */
+@keyframes imageEntrance {
+
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+/* انیمیشن دکمه */
+@keyframes buttonEntrance {
+
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* ظاهر شدن متن */
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
 }
 
 @media (max-width: 480px) {
+
   body {
     padding: 8px 6px 25px;
   }
@@ -73,4 +155,5 @@ body {
     font-size: 16px;
     padding: 14px 16px;
   }
+
 }
