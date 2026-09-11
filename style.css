@@ -14,29 +14,176 @@ body {
   font-family: Tahoma, Arial, sans-serif;
   display: flex;
   justify-content: center;
-  padding: 20px 12px 40px;
+  overflow-x: hidden;
 }
 
-.invitation {
-  width: min(100%, 650px);
+
+/* =========================
+   صفحه اول - پاکت
+========================= */
+
+.envelope-screen {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px 15px;
+
   text-align: center;
 
-  /* انیمیشن ورود کارت */
-  animation: cardEntrance 1.4s ease-out both;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
 }
 
-.invitation-image {
+
+/* متن بالای پاکت */
+
+.welcome-text {
+  margin-bottom: 22px;
+
+  animation:
+    welcomeIn 1.2s ease both;
+}
+
+.welcome-text h1 {
+  margin: 0 0 10px;
+
+  color: #4f6b50;
+
+  font-size: clamp(25px, 7vw, 38px);
+}
+
+.welcome-text p {
+  margin: 0;
+
+  color: #62482d;
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   خود پاکت
+========================= */
+
+.envelope-button {
+  border: 0;
+
+  padding: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  width: min(88vw, 470px);
+
+  outline: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  animation:
+    envelopeIn 1.3s ease both,
+    breathe 2.8s ease-in-out 1.3s infinite;
+}
+
+
+.envelope-button img {
   display: block;
+
   width: 100%;
+
   height: auto;
 
   border-radius: 18px;
 
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
-
-  /* انیمیشن عکس */
-  animation: imageEntrance 1.6s ease-out both;
+  filter:
+    drop-shadow(
+      0 16px 25px
+      rgba(50, 70, 45, 0.22)
+    );
 }
+
+
+/* هنگام لمس پاکت */
+
+.envelope-button:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================
+   انیمیشن خروج پاکت
+========================= */
+
+.envelope-screen.opening {
+  opacity: 0;
+
+  transform: scale(1.08);
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   کارت دعوت
+========================= */
+
+.invitation {
+  width: min(100%, 650px);
+
+  text-align: center;
+
+  padding: 20px 12px 40px;
+
+  opacity: 0;
+
+  transform:
+    translateY(40px)
+    scale(0.96);
+
+  pointer-events: none;
+
+  display: none;
+}
+
+
+/* نمایش کارت */
+
+.invitation.show {
+  display: block;
+
+  animation:
+    cardEntrance 1.2s ease-out forwards;
+
+  pointer-events: auto;
+}
+
+
+/* عکس کارت دعوت */
+
+.invitation-image {
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================
+   دکمه نقشه
+========================= */
 
 .location-btn {
   display: block;
@@ -50,110 +197,191 @@ body {
   border-radius: 50px;
 
   background: #a87520;
-  color: white;
+
+  color: #ffffff;
 
   text-decoration: none;
 
   font-size: 18px;
+
   font-weight: bold;
 
-  box-shadow: 0 8px 18px rgba(168, 117, 32, 0.28);
+  box-shadow:
+    0 8px 18px
+    rgba(168, 117, 32, 0.28);
 
   transition: 0.2s ease;
-
-  /* انیمیشن دکمه */
-  animation: buttonEntrance 1s ease-out 0.9s both;
 }
+
+
+/* حالت لمس / رفتن روی دکمه */
 
 .location-btn:hover {
   transform: translateY(-2px);
+
   background: #8d6119;
 }
+
 
 .location-btn:active {
   transform: scale(0.98);
 }
 
+
+/* متن آدرس */
+
 .hint {
   color: #62482d;
-  font-size: 14px;
-  line-height: 1.8;
-  margin: 8px 15px;
 
-  animation: fadeIn 1s ease-out 1.2s both;
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  margin: 8px 15px;
 }
 
-/* انیمیشن ورود کل کارت */
+
+/* =========================
+   انیمیشن ورود متن
+========================= */
+
+@keyframes welcomeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================
+   انیمیشن ورود پاکت
+========================= */
+
+@keyframes envelopeIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(0.88);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================
+   انیمیشن نفس کشیدن پاکت
+========================= */
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+
+}
+
+
+/* =========================
+   انیمیشن ورود کارت
+========================= */
+
 @keyframes cardEntrance {
 
   from {
     opacity: 0;
-    transform: translateY(45px) scale(0.96);
+
+    transform:
+      translateY(45px)
+      scale(0.96);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 
 }
 
-/* انیمیشن عکس */
-@keyframes imageEntrance {
 
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
+/* =========================
+   کاهش انیمیشن برای دستگاه‌هایی
+   که این گزینه را فعال کرده‌اند
+========================= */
 
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@media (prefers-reduced-motion: reduce) {
 
-}
+  .envelope-screen,
+  .welcome-text,
+  .envelope-button,
+  .invitation.show {
 
-/* انیمیشن دکمه */
-@keyframes buttonEntrance {
+    animation: none;
 
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    transition: none;
   }
 
 }
 
-/* ظاهر شدن متن */
-@keyframes fadeIn {
 
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-
-}
+/* =========================
+   تنظیمات موبایل
+========================= */
 
 @media (max-width: 480px) {
 
-  body {
+  .envelope-screen {
+    padding: 18px 10px;
+  }
+
+
+  .envelope-button {
+    width: min(94vw, 430px);
+  }
+
+
+  .invitation {
     padding: 8px 6px 25px;
   }
+
 
   .invitation-image {
     border-radius: 12px;
   }
 
+
   .location-btn {
     font-size: 16px;
+
     padding: 14px 16px;
   }
 
-}
+      }
